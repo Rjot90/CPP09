@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <cstdlib>
 
 class BitcoinExchange {
     private:

@@ -18,7 +18,6 @@ void PmergeMe::parseArgs(int ac, char **av) {
     for (int i = 1; i < ac; i++) {
         std::string s(av[i]);
 
-        // Vérifier que c'est bien que des chiffres
         if (s.empty())
             throw std::runtime_error("Error");
         for (size_t j = 0; j < s.size(); j++) {
@@ -26,7 +25,6 @@ void PmergeMe::parseArgs(int ac, char **av) {
                 throw std::runtime_error("Error");
         }
 
-        // Vérifier que c'est un entier positif dans la plage d'un int
         long val = std::strtol(s.c_str(), NULL, 10);
         if (val <= 0 || val > 2147483647L)
             throw std::runtime_error("Error");
@@ -40,15 +38,12 @@ static std::vector<int> getJacobsthalOrder(int n) {
     if (n <= 0)
         return std::vector<int>();
 
-    // Générer les termes jusqu'à dépasser n
     std::vector<int> jac;
     jac.push_back(1);
     jac.push_back(3);
     while (jac.back() < n)
         jac.push_back(jac[jac.size()-1] + 2 * jac[jac.size()-2]);
 
-    // Construire l'ordre : dans chaque groupe, on insère en décroissant
-    // Ex: pour n=5 → ordre = [1, 3, 2, 5, 4]
     std::vector<int> order;
     std::vector<bool> done(n + 1, false);
 
